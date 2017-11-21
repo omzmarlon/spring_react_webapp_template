@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'spring_react_webapp_template'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    //JUnit 5 - Start
+    testCompile("org.junit.platform:junit-platform-commons:1.0.1")
+    testCompile("org.junit.platform:junit-platform-console:1.0.1")
+    testCompile("org.junit.platform:junit-platform-console-standalone:1.0.1")
+    testCompile("org.junit.platform:junit-platform-engine:1.0.1")
+    testCompile("org.junit.platform:junit-platform-gradle-plugin:1.0.1")
+    testCompile("org.junit.platform:junit-platform-launcher:1.0.1")
+    testCompile("org.junit.platform:junit-platform-runner:1.0.1")
+    testCompile("org.junit.platform:junit-platform-suite-api:1.0.1")
+    testCompile("org.junit.platform:junit-platform-surefire-provider:1.0.1")
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+    testCompile("org.junit.jupiter:junit-jupiter-params:5.0.1")
+    //Ignored JUnit Vintage
+    //JUnit 5 - End
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework:spring-jdbc")
+    compile("mysql:mysql-connector-java")
+}
+
